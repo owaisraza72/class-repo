@@ -7,19 +7,20 @@
     <title>Document</title>
 </head>
 <style>
-
-
-    #main{display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    #main {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
     }
 
-    #main div{width: 400px;
-    border: 1px solid red;
-        height: 300px;}
+    #main div {
+        width: 400px;
+        border: 1px solid red;
+        height: 300px;
+    }
 
-    #main > div img{
-width: 100px;
+    #main>div img {
+        width: 100px;
     }
 </style>
 
@@ -96,13 +97,15 @@ width: 100px;
         function selectFilter() {
             let difficultyValue = selectDifficulty.value;
             let cuisineValue = selectCuisine.value;
-            let a = allData.filter((element) => {
-                if (element.difficulty == difficultyValue && element.cuisine == cuisineValue) {
-                    return element;
-                }
-            })
+
+            let filtered = allData.filter((element) => {
+                return (
+                    (difficultyValue === "" || element.difficulty === difficultyValue) &&
+                    (cuisineValue === "" || element.cuisine === cuisineValue)
+                );
+            });
             show.innerHTML = ""
-            a.forEach((element) => {
+            filtered.forEach((element) => {
                 renderCard(element);
             });
 
